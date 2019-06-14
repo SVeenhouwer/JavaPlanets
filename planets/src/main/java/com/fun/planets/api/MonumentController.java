@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 @RestController
@@ -48,8 +49,8 @@ public class MonumentController {
             target.setName(input.getName());
             target.setToday(LocalDate.now());
             target.setBuildDate(input.getBuildDate());
-            target.setAgePeriod(Period.between(target.getToday(),target.getBuildDate()));
-            target.setAgeDays(target.getAgePeriod().getDays());
+            target.setAgePeriod(Period.between(target.getBuildDate(),target.getToday()));
+            target.setAgeDays(ChronoUnit.DAYS.between(target.getBuildDate(),target.getToday()));
             this.monumentService.save(target);
             return target;
         } else {

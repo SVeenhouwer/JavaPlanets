@@ -14,7 +14,7 @@ public class Monument {
     private LocalDate today = LocalDate.now();
     private LocalDate buildDate;
     private Period agePeriod;
-    private int ageDays;
+    private long ageDays;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,11 +52,11 @@ public class Monument {
         this.agePeriod = agePeriod;
     }
 
-    public int getAgeDays() {
+    public long getAgeDays() {
         return ageDays;
     }
 
-    public void setAgeDays(int ageDays) {
+    public void setAgeDays(long ageDays) {
         this.ageDays = ageDays;
     }
 
