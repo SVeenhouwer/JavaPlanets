@@ -1,9 +1,8 @@
 package com.fun.planets.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
 public class Planet {
@@ -15,6 +14,18 @@ public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne
+    @JsonIgnoreProperties("planet")
+    private CalculatePeriod calculatePeriod;
+
+    public CalculatePeriod getCalculatePeriod() {
+        return calculatePeriod;
+    }
+
+    public void setCalculatePeriod(CalculatePeriod calculatePeriod) {
+        this.calculatePeriod = calculatePeriod;
+    }
 
     public String getName() {
         return name;
