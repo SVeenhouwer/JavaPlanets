@@ -46,8 +46,8 @@ public class CalculateBirthDateController {
         Optional<CalculateBirthDate> optionalResult = this.calculateBirthDateService.findById(id);
         if (optionalResult.isPresent()) {
             CalculateBirthDate target = optionalResult.get();
-            target.setEnteredDateString(input.getEnteredDateString());
-            target.setEnteredDate(LocalDate.parse(target.getEnteredDateString()));
+//            target.setEnteredDateString(input.getEnteredDateString());
+            target.setEnteredDate(input.getEnteredDate());
             target.setToday(LocalDate.now());
             target.setDatePeriod(Period.between(target.getToday(), target.getEnteredDate()));
             target.setDateDays(target.getToday().toEpochDay()-target.getEnteredDate().toEpochDay());
