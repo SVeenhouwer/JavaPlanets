@@ -1,9 +1,8 @@
 package com.fun.planets.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -14,11 +13,26 @@ public class CalculateBirthDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    LocalDate today = LocalDate.now();
-    LocalDate enteredDate;
-    String enteredDateString;
-    long dateDays;
-    Period datePeriod;
+    private LocalDate today = LocalDate.now();
+    private LocalDate enteredDate;
+    private String enteredDateString;
+    private long dateDays;
+    private Period datePeriod;
+
+    private double calculatedPlanetYears;
+    private double calculatedPlanetDays;
+
+    @OneToOne
+    @JsonIgnoreProperties("calculateBirthDate")
+    private Planet planet;
+
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
 
     public long getId() {
         return id;
@@ -62,5 +76,21 @@ public class CalculateBirthDate {
 
     public void setDatePeriod(Period datePeriod) {
         this.datePeriod = datePeriod;
+    }
+
+    public double getCalculatedPlanetYears() {
+        return calculatedPlanetYears;
+    }
+
+    public void setCalculatedPlanetYears(double calculatedPlanetYears) {
+        this.calculatedPlanetYears = calculatedPlanetYears;
+    }
+
+    public double getCalculatedPlanetDays() {
+        return calculatedPlanetDays;
+    }
+
+    public void setCalculatedPlanetDays(double calculatedPlanetDays) {
+        this.calculatedPlanetDays = calculatedPlanetDays;
     }
 }

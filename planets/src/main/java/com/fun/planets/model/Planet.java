@@ -27,6 +27,18 @@ public class Planet {
         this.calculatePeriod = calculatePeriod;
     }
 
+    @OneToOne
+    @JsonIgnoreProperties("planet")
+    private CalculateBirthDate calculateBirthDate;
+
+    public CalculateBirthDate getCalculateBirthDate() {
+        return calculateBirthDate;
+    }
+
+    public void setCalculateBirthDate(CalculateBirthDate calculateBirthDate) {
+        this.calculateBirthDate = calculateBirthDate;
+    }
+
     public String getName() {
         return name;
     }
