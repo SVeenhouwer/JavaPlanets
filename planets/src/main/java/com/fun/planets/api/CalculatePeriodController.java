@@ -67,14 +67,19 @@ public class CalculatePeriodController {
             CalculatePeriod target = optionalCalculatePeriod.get();
             Planet targetPlanet = optionalPlanet.get();
             Planet earth = this.planetService.findById((long)3).get();
-            target.setEnteredYears(input.getEnteredYears());
-            target.setEnteredDays(input.getEnteredDays());
-            this.calculatePeriodService.save(target);
-            target.setCalculatedDays(target.getEnteredDays()*earth.getOrbitalPeriodSolar());
-            this.calculatePeriodService.save(target);
+            if (input.getEnteredYears() != 0) {
+                target.setEnteredYears(input.getEnteredYears());
+            } else {
+                target.setEnteredYears(0);
+            }
+            if (input.getEnteredDays() != 0) {
+                target.setEnteredDays(input.getEnteredDays());
+            } else {
+                target.setEnteredDays(0);
+            }
+            target.setCalculatedDays(target.getEnteredYears()*earth.getOrbitalPeriodSolar());
             target.setCalculatedPlanetYearsDays(target.getCalculatedDays()/targetPlanet.getOrbitalPeriodAxis());
             target.setCalculatedPlanetYears(target.getCalculatedDays()/targetPlanet.getOrbitalPeriodSolar());
-            this.calculatePeriodService.save(target);
             target.setCalculatedPlanetDays(target.getEnteredDays()/targetPlanet.getOrbitalPeriodAxis());
             target.setCalculatedPlanetDaysYears(target.getEnteredDays()/targetPlanet.getOrbitalPeriodSolar());
             this.calculatePeriodService.save(target);
