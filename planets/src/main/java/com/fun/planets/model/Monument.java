@@ -15,6 +15,8 @@ public class Monument {
     private LocalDate buildDate;
     private Period agePeriod;
     private long ageDays;
+    private String buildDateString;
+    private String agePeriodString;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +64,21 @@ public class Monument {
 
     public long getId() {
         return id;
+    }
+
+    public String getBuildDateString() {
+        return buildDateString;
+    }
+
+    public void setBuildDateString(String buildDateString) {
+        this.buildDateString = buildDateString;
+    }
+
+    public String getAgePeriodString() {
+        return agePeriodString;
+    }
+
+    public void setAgePeriodString(String agePeriodString) {
+        this.agePeriodString = agePeriodString;
     }
 }

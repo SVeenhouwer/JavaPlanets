@@ -46,10 +46,12 @@ public class MonumentController {
         Optional<Monument> optionalResult = this.monumentService.findById(id);
         if (optionalResult.isPresent()) {
             Monument target = optionalResult.get();
-            target.setName(input.getName());
+//            target.setName(input.getName());
             target.setToday(LocalDate.now());
             target.setBuildDate(input.getBuildDate());
+            target.setBuildDateString(input.getBuildDateString());
             target.setAgePeriod(Period.between(target.getBuildDate(),target.getToday()));
+            target.setAgePeriodString(target.getAgePeriod().getYears()+" years, "+target.getAgePeriod().getMonths()+" months, "+target.getAgePeriod().getDays()+" days.");
             target.setAgeDays(ChronoUnit.DAYS.between(target.getBuildDate(),target.getToday()));
             this.monumentService.save(target);
             return target;
